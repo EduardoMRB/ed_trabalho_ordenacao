@@ -5,11 +5,11 @@
 /**
  * Autores: Eduardo Borges, Michel Rodrigues e Jean Osowski
  * 
- * Eduardo Borges   - Método de ordenação: Radix Sort
+ * Eduardo Borges       - Método de ordenação: Radix Sort campo valor
  *
- * Michel Rodrigues - Método de ordenação: Bubble Sort
+ * Michel Rodrigues     - Método de ordenação: Bubble Sort campo id
  *
- * Jean Osowski     - Método de ordenação: Quick Sort
+ * Jean Osowski(JENIAU) - Método de ordenação: Quick Sort campo nome
  *
  */
 
