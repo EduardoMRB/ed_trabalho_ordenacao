@@ -1,4 +1,4 @@
-#include <stdlio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -33,7 +33,7 @@ void merge(Mercadoria vet[], int tamanho) {
     k = 0;
 
     while (i < meio && j < tamanho) {
-        if (vet[i] < vet[j]) {
+        if (vet[i].valor < vet[j].valor) {
             tmp[k] = vet[i++];
         } else {
             tmp[k] = vet[j++];
