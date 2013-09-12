@@ -5,7 +5,7 @@
 /**
  * Autores: Eduardo Borges, Michel Rodrigues e Jean Osowski
  * 
- * Eduardo Borges       - Método de ordenação: Merge Sort campo valor
+ * Eduardo Borges       - Método de ordenação: Shell Sort campo valor
  *
  * Michel Rodrigues     - Método de ordenação: Bubble Sort campo id
  *
@@ -19,56 +19,39 @@ typedef struct mercadoria {
     char *nome;
 } Mercadoria;
 
-void merge(Mercadoria vet[], int tamanho) {
-    int meio;
-    int i, j, k;
-    int* tmp;
-
-    tmp = (int*) malloc(tamanho * sizeof(int));
-
-    meio = tamanho / 2;
-
-    i = 0;
-    j = meio;
-    k = 0;
-
-    while (i < meio && j < tamanho) {
-        if (vet[i].valor < vet[j].valor) {
-            tmp[k] = vet[i++];
-        } else {
-            tmp[k] = vet[j++];
+void shellSort(Mercadoria vet[], int tamanho) {
+    int i, j;
+    float valor;
+    int intervalo = 1;
+    do {
+        intervalo = 3 * intervalo + 1;
+    } while (intervalo < tamanho);
+    do {
+        intervalo /= 3;
+        for(i = intervalo; i < tamanho; i++) {
+            valor = vet[i].valor;
+            j = i - intervalo;
+            while (j >= 0 && valor < vet[j].valor) {
+                vet [j + intervalo].valor = vet[j].valor;
+                j -= intervalo;
+            }
+            vet [j + intervalo].valor = valor;
         }
-        ++k;
-    }
-
-    if (i == meio) {
-        while (j < tamanho) {
-            tmp[k++] = vet[j++];
-        }
-    } else {
-        while (i < meio) {
-            tmp[k++] = vet[i++];
-        }
-    }
-
-    for (i = 0; i < tamanho; ++i) {
-        vet[i] = tmp[i];
-    }
-
-    free(tmp);
-}
-
-void mergeSort(Mercadoria vet[], int tamanho) {
-    int meio;
-
-    if (tamanho > 1) {
-        meio = tamanho / 2;
-        mergeSort(vet, meio);
-        mergeSort(vet + meio, tamanho - meio);
-        merge(vet, tamanho);
-    }
+    } while ( intervalo > 1);
 }
 
 int main() {
+    Mercadoria merc1, merc2, merc3;
+    merc1.valor = 2.2;
+    merc2.valor = 2.1;
+    merc3.valor = 0.9;
 
+    int i = 0;
+
+    Mercadoria vet[3] = { merc1, merc2, merc3 };
+    shellSort(vet, 3);
+
+    for (i; i < 3; ++i) {
+        printf("%f\n", vet[i].valor);
+    }
 }
